@@ -4,6 +4,7 @@
 #include "Parser.h"
 #include "Axis2D.h"
 #include "Loft.h"
+#include "Solver.h"
 
 Grid grid(FROM_MM(1), FROM_MM(100));
 Workspace workspace;
@@ -18,6 +19,7 @@ void shapesMenuFunc(int option);
 void methodsMenuFunc(int option);
 void transformationsMenuFunc(int option);
 void measurementsMenuFunc(int option);
+void solverMenuFunc(int option);
 void cameraMenuFunc(int option);
 void animationMenuFunc(int option);
 void menuFunc(int option);
@@ -53,6 +55,25 @@ namespace MENU {
 		GRID,
 		MEASURE_DISTANCE,
 		MEASURE_ANGLE,
+
+		SET_IMAGE_DISTANCE_RATIO,
+		SET_IMAGE_ORIGIN_POINT_ABSOLUTE,
+		SET_IMAGE_ORIGIN_POINT_MIDPOINT,
+		CONVERT_IMAGE_DISTANCE_TO_MM,
+		RELATIVE_IMAGE_COORDINATES,
+		TRIGONOMETRIC_RATIOS,
+		FOUR_QUADRANT_INVERSE_TANGENT,
+		DISTANCE_BETWEEN_POINTS,
+		VECTOR_FROM_TWO_POINTS,
+		ANGLE_BETWEEN_VECTORS,
+		CROSS_PRODUCT,
+		ROTATION_MATRIX_PARAMETERS_ABSOLUTE_ORIGIN,
+		ROTATION_MATRIX_PARAMETERS_RELATIVE_ORIGIN,
+		ORTHONORMAL_BASIS_VECTORS,
+		ORTHONORMAL_BASIS_MATRIX,
+		INVERSE_MATRIX,
+		TRANSPOSE_MATRIX,
+		MATRIX_MULTIPLICATION,
 
 		ANTERIOR,
 		LATERAL_LEFT,
@@ -354,6 +375,67 @@ void measurementsMenuFunc(int option){
 	}
 }
 
+void solverMenuFunc(int option){
+	switch(option){
+	case MENU::TRIGONOMETRIC_RATIOS:
+		Solver::trigonometricRatiosFromAnAngle();
+		break;
+	case MENU::SET_IMAGE_DISTANCE_RATIO:
+		Solver::setImageDistanceRatio();
+		break;
+	case MENU::SET_IMAGE_ORIGIN_POINT_ABSOLUTE:
+		Solver::setImageOriginToAbsoluteCoordinates();
+		break;
+	case MENU::SET_IMAGE_ORIGIN_POINT_MIDPOINT:
+		Solver::setImageOriginToMidpointOfLine();
+		break;
+	case MENU::CONVERT_IMAGE_DISTANCE_TO_MM:
+		Solver::convertImageDistanceToMM();
+		break;
+	case MENU::RELATIVE_IMAGE_COORDINATES:
+		Solver::imageCoordinatesRelativeToImageOrigin();
+		break;
+	case MENU::FOUR_QUADRANT_INVERSE_TANGENT:
+		Solver::fourQuadrantInverseTangent();
+		break;
+	case MENU::DISTANCE_BETWEEN_POINTS:
+		Solver::distanceBetweenTwoPoints();
+		break;
+	case MENU::VECTOR_FROM_TWO_POINTS:
+		Solver::vectorFromSubtractionOfTwoPoints();
+		break;
+	case MENU::ANGLE_BETWEEN_VECTORS:
+		Solver::angleBetweenTwoVectors();
+		break;
+	case MENU::CROSS_PRODUCT:
+		Solver::crossProduct();
+		break;
+	case MENU::ROTATION_MATRIX_PARAMETERS_ABSOLUTE_ORIGIN:
+		Solver::parametersToRotateOneVectorToAnother();
+		break;
+	case MENU::ROTATION_MATRIX_PARAMETERS_RELATIVE_ORIGIN:
+		Solver::parametersToRotateTwoVectorsDefinedByThreePoints();
+		break;
+	case MENU::ORTHONORMAL_BASIS_VECTORS:
+		Solver::orthonormalBasisVectorsFromPositiveZ();
+		break;
+	case MENU::ORTHONORMAL_BASIS_MATRIX:
+		Solver::orthonormalBasisMatrixFromPositiveZ();
+		break;
+	case MENU::INVERSE_MATRIX:
+		Solver::inverseMatrix();
+		break;
+	case MENU::TRANSPOSE_MATRIX:
+		Solver::transposeMatrix();
+		break;
+	case MENU::MATRIX_MULTIPLICATION:
+		Solver::multiplyTwoMatrices();
+		break;
+	default:
+		break;
+	}
+}
+
 void cameraMenuFunc(int option){
 	switch(option){
 	case MENU::ANTERIOR:
@@ -484,6 +566,26 @@ void createMenu(){
 	glutAddMenuEntry("Distance", MENU::MEASURE_DISTANCE);
 	glutAddMenuEntry("Angle", MENU::MEASURE_ANGLE);
 
+	int subMenuSolver = glutCreateMenu(solverMenuFunc);
+	glutAddMenuEntry("Set Image Distance Ratio", MENU::SET_IMAGE_DISTANCE_RATIO);
+	glutAddMenuEntry("Set Image Origin Point from Point", MENU::SET_IMAGE_ORIGIN_POINT_ABSOLUTE);
+	glutAddMenuEntry("Set Image Origin Point from Midpoint", MENU::SET_IMAGE_ORIGIN_POINT_MIDPOINT);
+	glutAddMenuEntry("Convert Image Distance to mm", MENU::CONVERT_IMAGE_DISTANCE_TO_MM);
+	glutAddMenuEntry("Relative Image Coordinates", MENU::RELATIVE_IMAGE_COORDINATES);
+	glutAddMenuEntry("Trigonometric Ratios", MENU::TRIGONOMETRIC_RATIOS);
+	glutAddMenuEntry("Four Quadrant Inverse Tangent", MENU::FOUR_QUADRANT_INVERSE_TANGENT);
+	glutAddMenuEntry("Distance Between Two Points", MENU::DISTANCE_BETWEEN_POINTS);
+	glutAddMenuEntry("Vector From Subtraction of Two Points", MENU::VECTOR_FROM_TWO_POINTS);
+	glutAddMenuEntry("Angle Between Two Vectors", MENU::ANGLE_BETWEEN_VECTORS);
+	glutAddMenuEntry("Cross Product", MENU::CROSS_PRODUCT);
+	glutAddMenuEntry("Rotation Parameters By Two Vectors", MENU::ROTATION_MATRIX_PARAMETERS_ABSOLUTE_ORIGIN);
+	glutAddMenuEntry("Rotation Parameters By Three Points", MENU::ROTATION_MATRIX_PARAMETERS_RELATIVE_ORIGIN);
+	glutAddMenuEntry("Orthonormal Basis Vectors", MENU::ORTHONORMAL_BASIS_VECTORS);
+	glutAddMenuEntry("Orthonormal Basis Matrix", MENU::ORTHONORMAL_BASIS_MATRIX);
+	glutAddMenuEntry("Inverse Matrix", MENU::INVERSE_MATRIX);
+	glutAddMenuEntry("Transpose Matrix", MENU::TRANSPOSE_MATRIX);
+	glutAddMenuEntry("Multiply Two Matrices", MENU::MATRIX_MULTIPLICATION);
+
 	int subMenuCamera = glutCreateMenu(cameraMenuFunc);
 	glutAddMenuEntry("Anterior", MENU::ANTERIOR);
 	glutAddMenuEntry("Left Lateral", MENU::LATERAL_LEFT);
@@ -509,6 +611,7 @@ void createMenu(){
 	glutAddSubMenu("Methods", subMenuMethods);
 	glutAddSubMenu("Transformations", subMenuTransformations);
 	glutAddSubMenu("Measurements", subMenuMeasurements);
+	glutAddSubMenu("Solver", subMenuSolver);
 	glutAddSubMenu("Camera", subMenuCamera);
 	glutAddSubMenu("Animation", subMenuAnimation);
 	glutAddMenuEntry("Compile", MENU::COMPILE);

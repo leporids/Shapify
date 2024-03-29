@@ -1,0 +1,524 @@
+Sphere: bodyAnteriorDepth
+	x: 0
+	y: 0
+	z: 201.299
+	radius: 5
+	visible: 1
+
+Sphere: bodyPosteriorDepth
+	x: 0
+	y: 0
+	z: -200.649
+	radius: 5
+	visible: 1
+
+Sphere: bodyDorsalDepth
+	x: 0
+	y: 25.974
+	z: 0
+	radius: 5
+	visible: 1
+
+Sphere: bodyVentralDepth
+	x: 0
+	y: -25.974
+	z: 0
+	radius: 5
+	visible: 1
+
+Sphere: bodyRightLateralDepth
+	x: -65.7143
+	y: 0
+	z: 0
+	radius: 5
+	visible: 1
+
+Sphere: bodyLeftLateralDepth
+	x: 65.7143
+	y: 0
+	z: 0
+	radius: 5
+	visible: 1
+
+Sphere: body
+	x: 0
+	y: 0
+	z: 0
+	radius: 10
+	visible: 1
+	transformations: bodySphereScale
+
+Sphere: leftProthoracic1
+	x: 34.2857
+	y: -20.1299
+	z: 97.1429
+	radius: 5
+	visible: 1
+
+Sphere: leftProthoracic2
+	x: 60
+	y: -42.2078
+	z: 145.714
+	radius: 5
+	visible: 1
+
+Sphere: leftProthoracic3
+	x: 80
+	y: -74.6753
+	z: 158.571
+	radius: 5
+	visible: 1
+
+Sphere: leftProthoracic4
+	x: 96.2857
+	y: -109.091
+	z: 202.857
+	radius: 5
+	visible: 1
+
+Sphere: leftMesothoracic1
+	x: 28.5714
+	y: -20.1299
+	z: 25.7143
+	radius: 5
+	visible: 1
+
+Sphere: leftMesothoracic2
+	x: 86
+	y: -42.2078
+	z: 71.4286
+	radius: 5
+	visible: 1
+
+Sphere: leftMesothoracic3
+	x: 132.857
+	y: -83.7662
+	z: 18.5714
+	radius: 5
+	visible: 1
+
+Sphere: leftMesothoracic4
+	x: 194.286
+	y: -122.078
+	z: 4.28571
+	radius: 5
+	visible: 1
+
+Sphere: leftMetathoracic1
+	x: 27.1429
+	y: -20.1299
+	z: -28.5714
+	radius: 5
+	visible: 1
+
+Sphere: leftMetathoracic2
+	x: 97.1429
+	y: -42.2078
+	z: -40
+	radius: 5
+	visible: 1
+
+Sphere: leftMetathoracic3
+	x: 118.571
+	y: -55.1948
+	z: -147.143
+	radius: 5
+	visible: 1
+
+Sphere: leftMetathoracic4
+	x: 182.857
+	y: -83.7662
+	z: -211.429
+	radius: 5
+	visible: 1
+
+Sphere: rightProthoracic1
+	x: -34.2857
+	y: -20.1299
+	z: 97.1429
+	radius: 5
+	visible: 1
+
+Sphere: rightProthoracic2
+	x: -60
+	y: -42.2078
+	z: 145.714
+	radius: 5
+	visible: 1
+
+Sphere: rightProthoracic3
+	x: -80
+	y: -74.6753
+	z: 158.571
+	radius: 5
+	visible: 1
+
+Sphere: rightProthoracic4
+	x: -96.2857
+	y: -109.091
+	z: 202.857
+	radius: 5
+	visible: 1
+
+Sphere: rightMesothoracic1
+	x: -28.5714
+	y: -20.1299
+	z: 25.7143
+	radius: 5
+	visible: 1
+
+Sphere: rightMesothoracic2
+	x: -86
+	y: -42.2078
+	z: 71.4286
+	radius: 5
+	visible: 1
+
+Sphere: rightMesothoracic3
+	x: -132.857
+	y: -83.7662
+	z: 18.5714
+	radius: 5
+	visible: 1
+
+Sphere: rightMesothoracic4
+	x: -194.286
+	y: -122.078
+	z: 4.28571
+	radius: 5
+	visible: 1
+
+Sphere: rightMetathoracic1
+	x: -27.1429
+	y: -20.1299
+	z: -28.5714
+	radius: 5
+	visible: 1
+
+Sphere: rightMetathoracic2
+	x: -97.1429
+	y: -42.2078
+	z: -40
+	radius: 5
+	visible: 1
+
+Sphere: rightMetathoracic3
+	x: -118.571
+	y: -55.1948
+	z: -147.143
+	radius: 5
+	visible: 1
+
+Sphere: rightMetathoracic4
+	x: -182.857
+	y: -83.7662
+	z: -211.429
+	radius: 5
+	visible: 1
+
+Cylinder: leftProthoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftProthoracicFemurModelRotate,prothoracicFemurModelScale,legModelTranslate
+
+Cylinder: leftProthoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftProthoracicTibiaModelRotate,prothoracicTibiaModelScale,legModelTranslate
+
+Cylinder: leftProthoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftProthoracicTarsusModelRotate,prothoracicTarsusModelScale,legModelTranslate
+
+Compound: leftProthoracicTarsusCompound
+	x: 20
+	y: -32.4675
+	z: 12.857
+	visible: 0
+	shapes: leftProthoracicTarsus
+	transformations: leftProthoracicTarsusWorldRotate
+
+Compound: leftProthoracicTibiaCompound
+	x: 25.7143
+	y: -22.0779
+	z: 48.5711
+	visible: 0
+	shapes: leftProthoracicTibia,leftProthoracicTarsusCompound
+	transformations: leftProthoracicFemurWorldRotate
+
+Compound: leftProthoracicFemurCompound
+	x: 34.2857
+	y: -20.1299
+	z: 97.1429
+	visible: 1
+	shapes: leftProthoracicFemur,leftProthoracicTibiaCompound
+	transformations: leftProthoracicFemurWorldRotate
+
+Cylinder: leftMesothoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMesothoracicFemurModelRotate,mesothoracicFemurModelScale,legModelTranslate
+
+Cylinder: leftMesothoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMesothoracicTibiaModelRotate,mesothoracicTibiaModelScale,legModelTranslate
+
+Cylinder: leftMesothoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMesothoracicTarsusModelRotate,mesothoracicTarsusModelScale,legModelTranslate
+
+Compound: leftMesothoracicTarsusCompound
+	x: 46.857
+	y: -41.5584
+	z: -52.8572
+	visible: 0
+	shapes: leftMesothoracicTarsus
+	transformations: leftMesothoracicTarsusWorldRotate
+
+Compound: leftMesothoracicTibiaCompound
+	x: 57.4286
+	y: -22.0779
+	z: 45.7143
+	visible: 0
+	shapes: leftMesothoracicTibia,leftMesothoracicTarsusCompound
+	transformations: leftMesothoracicFemurWorldRotate
+
+Compound: leftMesothoracicFemurCompound
+	x: 28.5714
+	y: -20.1299
+	z: 25.7143
+	visible: 1
+	shapes: leftMesothoracicFemur,leftMesothoracicTibiaCompound
+	transformations: leftMesothoracicFemurWorldRotate
+
+Cylinder: leftMetathoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMetathoracicFemurModelRotate,metathoracicFemurModelScale,legModelTranslate
+
+Cylinder: leftMetathoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMetathoracicTibiaModelRotate,metathoracicTibiaModelScale,legModelTranslate
+
+Cylinder: leftMetathoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: leftMetathoracicTarsusModelRotate,metathoracicTarsusModelScale,legModelTranslate
+
+Compound: leftMetathoracicTarsusCompound
+	x: 21.4281
+	y: -12.987
+	z: -107.143
+	visible: 0
+	shapes: leftMetathoracicTarsus
+	transformations: leftMetathoracicTarsusWorldRotate
+
+Compound: leftMetathoracicTibiaCompound
+	x: 70
+	y: -22.0779
+	z: -11.4286
+	visible: 0
+	shapes: leftMetathoracicTibia,leftMetathoracicTarsusCompound
+	transformations: leftMetathoracicFemurWorldRotate
+
+Compound: leftMetathoracicFemurCompound
+	x: 27.1429
+	y: -20.1299
+	z: -28.5714
+	visible: 1
+	shapes: leftMetathoracicFemur,leftMetathoracicTibiaCompound
+	transformations: leftMetathoracicFemurWorldRotate
+
+Cylinder: rightProthoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightProthoracicFemurModelRotate,prothoracicFemurModelScale,legModelTranslate
+
+Cylinder: rightProthoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightProthoracicTibiaModelRotate,prothoracicTibiaModelScale,legModelTranslate
+
+Cylinder: rightProthoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightProthoracicTarsusModelRotate,prothoracicTarsusModelScale,legModelTranslate
+
+Compound: rightProthoracicTarsusCompound
+	x: -20
+	y: -32.4675
+	z: 12.857
+	visible: 0
+	shapes: rightProthoracicTarsus
+	transformations: rightProthoracicTarsusWorldRotate
+
+Compound: rightProthoracicTibiaCompound
+	x: -25.7143
+	y: -22.0779
+	z: 48.5711
+	visible: 0
+	shapes: rightProthoracicTibia,rightProthoracicTarsusCompound
+	transformations: rightProthoracicFemurWorldRotate
+
+Compound: rightProthoracicFemurCompound
+	x: -34.2857
+	y: -20.1299
+	z: 97.1429
+	visible: 1
+	shapes: rightProthoracicFemur,rightProthoracicTibiaCompound
+	transformations: leftProthoracicFemurWorldRotate
+
+Cylinder: rightMesothoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMesothoracicFemurModelRotate,mesothoracicFemurModelScale,legModelTranslate
+
+Cylinder: rightMesothoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMesothoracicTibiaModelRotate,mesothoracicTibiaModelScale,legModelTranslate
+
+Cylinder: rightMesothoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMesothoracicTarsusModelRotate,mesothoracicTarsusModelScale,legModelTranslate
+
+Compound: rightMesothoracicTarsusCompound
+	x: -46.857
+	y: -41.5584
+	z: -52.8572
+	visible: 0
+	shapes: rightMesothoracicTarsus
+	transformations: rightMesothoracicTarsusWorldRotate
+
+Compound: rightMesothoracicTibiaCompound
+	x: -57.4286
+	y: -22.0779
+	z: 45.7143
+	visible: 0
+	shapes: rightMesothoracicTibia,rightMesothoracicTarsusCompound
+	transformations: rightMesothoracicFemurWorldRotate
+
+Compound: rightMesothoracicFemurCompound
+	x: -28.5714
+	y: -20.1299
+	z: 25.7143
+	visible: 1
+	shapes: rightMesothoracicFemur,rightMesothoracicTibiaCompound
+	transformations: rightMesothoracicFemurWorldRotate
+
+Cylinder: rightMetathoracicFemur
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMetathoracicFemurModelRotate,metathoracicFemurModelScale,legModelTranslate
+
+Cylinder: rightMetathoracicTibia
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMetathoracicTibiaModelRotate,metathoracicTibiaModelScale,legModelTranslate
+
+Cylinder: rightMetathoracicTarsus
+	x: 0
+	y: 0
+	z: 0
+	height: 10
+	radius: 5
+	visible: 0
+	transformations: rightMetathoracicTarsusModelRotate,metathoracicTarsusModelScale,legModelTranslate
+
+Compound: rightMetathoracicTarsusCompound
+	x: -21.4281
+	y: -12.987
+	z: -107.143
+	visible: 0
+	shapes: rightMetathoracicTarsus
+	transformations: rightMetathoracicTarsusWorldRotate
+
+Compound: rightMetathoracicTibiaCompound
+	x: -70
+	y: -22.0779
+	z: -11.4286
+	visible: 0
+	shapes: rightMetathoracicTibia,rightMetathoracicTarsusCompound
+	transformations: rightMetathoracicFemurWorldRotate
+
+Compound: rightMetathoracicFemurCompound
+	x: -27.1429
+	y: -20.1299
+	z: -28.5714
+	visible: 1
+	shapes: rightMetathoracicFemur,rightMetathoracicTibiaCompound
+	transformations: rightMetathoracicFemurWorldRotate
+

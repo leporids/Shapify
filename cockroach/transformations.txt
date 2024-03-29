@@ -1,0 +1,271 @@
+Scale: bodySphereScale
+	x: 6.57143
+	y: 2.5974
+	z: 20.974
+
+Translate: legModelTranslate
+	x: 0
+	y: -5
+	z: 0
+
+Scale: prothoracicFemurModelScale
+	x: 1.27775
+	y: 5.92268
+	z: 1.27775
+
+Scale: prothoracicTibiaModelScale
+	x: 0.515079
+	y: 4.02423
+	z: 0.515079
+
+Scale: prothoracicTarsusModelScale
+	x: 0.319438
+	y: 5.8403
+	z: 0.319438
+
+Scale: mesothoracicFemurModelScale
+	x: 1.51859
+	y: 7.66503
+	z: 1.51859
+
+Scale: mesothoracicTibiaModelScale
+	x: 0.808122
+	y: 8.19546
+	z: 0.808122
+
+Scale: mesothoracicTarsusModelScale
+	x: 0.443548
+	y: 7.37929
+	z: 0.443548
+
+Scale: metathoracicFemurModelScale
+	x: 2.14286
+	y: 7.42836
+	z: 2.14286
+
+Scale: metathoracicTibiaModelScale
+	x: 0.728431
+	y: 11.0034
+	z: 0.728431
+
+Scale: metathoracicTarsusModelScale
+	x: 0.638877
+	y: 9.5298
+	z: 0.638877
+
+Rotate: leftProthoracicFemurModelRotate
+	angle: 68.1135
+	x: -0.820087
+	y: 0
+	z: 0.434167
+
+Rotate: leftProthoracicTibiaModelRotate
+	angle: 36.2155
+	x: -0.31949
+	y: 0
+	z: 0.49699
+
+Rotate: leftProthoracicTarsusModelRotate
+	angle: 53.8941
+	x: -0.758283
+	y: 0
+	z: 0.27885
+
+Rotate: leftProthoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftProthoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftProthoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightProthoracicFemurModelRotate
+	angle: 68.1135
+	x: -0.820087
+	y: 0
+	z: -0.434167
+
+Rotate: rightProthoracicTibiaModelRotate
+	angle: 36.2155
+	x: -0.31949
+	y: 0
+	z: -0.49699
+
+Rotate: rightProthoracicTarsusModelRotate
+	angle: 53.8941
+	x: -0.758283
+	y: 0
+	z: -0.27885
+
+Rotate: rightProthoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightProthoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightProthoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMesothoracicFemurModelRotate
+	angle: 73.2597
+	x: -0.5964
+	y: 0
+	z: 0.749228
+
+Rotate: leftMesothoracicTibiaModelRotate
+	angle: 59.5298
+	x: 0.644957
+	y: 0
+	z: 0.571743
+
+Rotate: leftMesothoracicTarsusModelRotate
+	angle: 58.7227
+	x: 0.193592
+	y: 0
+	z: 0.832451
+
+Rotate: leftMesothoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMesothoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMesothoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMesothoracicFemurModelRotate
+	angle: 73.2597
+	x: -0.5964
+	y: 0
+	z: -0.749228
+
+Rotate: rightMesothoracicTibiaModelRotate
+	angle: 59.5298
+	x: 0.644957
+	y: 0
+	z: -0.571743
+
+Rotate: rightMesothoracicTarsusModelRotate
+	angle: 58.7227
+	x: 0.193592
+	y: 0
+	z: -0.832451
+
+Rotate: rightMesothoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMesothoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMesothoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMetathoracicFemurModelRotate
+	angle: 72.7098
+	x: 0.153851
+	y: 0
+	z: 0.942335
+
+Rotate: leftMetathoracicTibiaModelRotate
+	angle: 83.2217
+	x: 0.973728
+	y: 0
+	z: 0.194741
+
+Rotate: leftMetathoracicTarsusModelRotate
+	angle: 72.5537
+	x: 0.674579
+	y: 0
+	z: 0.674579
+
+Rotate: leftMetathoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMetathoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: leftMetathoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMetathoracicFemurModelRotate
+	angle: 72.7098
+	x: 0.153851
+	y: 0
+	z: -0.942335
+
+Rotate: rightMetathoracicTibiaModelRotate
+	angle: 83.2217
+	x: 0.973728
+	y: 0
+	z: -0.194741
+
+Rotate: rightMetathoracicTarsusModelRotate
+	angle: 72.5537
+	x: 0.674579
+	y: 0
+	z: -0.674579
+
+Rotate: rightMetathoracicFemurWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMetathoracicTibiaWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+
+Rotate: rightMetathoracicTarsusWorldRotate
+	angle: 0
+	x: 0
+	y: 0
+	z: 0
+

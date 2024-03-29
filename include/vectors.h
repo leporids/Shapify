@@ -35,5 +35,6 @@ class Vec3f {
 	private:
 		float components[3];
 		friend class Animation;
+		friend class Solver;
 };
 #endif // VECTORS_H

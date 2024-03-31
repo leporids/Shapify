@@ -2,6 +2,8 @@
 
 PRINTABLE_CLASS_NAME(Box)
 
+const float Box::normals[Box::NUMBER_OF_NORMAL_COMPONENTS] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f, -1.0f, -1.0f, 1.0f, -1.0f, -1.0f, -1.0f};
+
 const int Box::indices[Box::NUMBER_OF_INDICES] = {6, 2, 0, 6, 4, 0, 6, 7, 5, 6, 4, 5, 7, 3, 1, 7, 5, 1, 2, 3, 1, 2, 0, 1, 6, 7, 3, 6, 2, 3, 4, 5, 1, 4, 0, 1};
 
 Box::Box() :
@@ -61,14 +63,20 @@ void Box::initializeVertexBuffers(){
 		glGenBuffers(1, &this->colorBuffer);
 		this->colors.clear();
 		for(int i = 0; i < Box::NUMBER_OF_TRIANGLES; ++i){
-			const float color = 0.7f * ((float)(i + 1) / (float)Box::NUMBER_OF_TRIANGLES);
-			PUSH_BACK_4F(this->colors, color, color, color, 1.0f)
-			PUSH_BACK_4F(this->colors, 0.1f, color, 0.1f, 1.0f)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_COLOR_R, Shape::DEFAULT_COLOR_G, Shape::DEFAULT_COLOR_B, Shape::DEFAULT_COLOR_A)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_SELECTED_COLOR_R, Shape::DEFAULT_SELECTED_COLOR_G, Shape::DEFAULT_SELECTED_COLOR_B, Shape::DEFAULT_SELECTED_COLOR_A)
 		}
 		glBindBuffer(GL_ARRAY_BUFFER, this->colorBuffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * this->colors.size(), (void*)this->colors.data(), GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		this->needsColorBuffer = false;
+	}
+	if(this->needsNormalBuffer){
+		glGenBuffers(1, &this->normalBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, this->normalBuffer);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Box::normals), (void*)Box::normals, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		this->needsNormalBuffer = false;
 	}
 	if(this->needsElementBuffer){
 		glGenBuffers(1, &this->elementBuffer);
@@ -79,26 +87,17 @@ void Box::initializeVertexBuffers(){
 	}
 }
 
-void Box::render(const Mat4f* const parentTransformations, const bool isSelected) const{
+void Box::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
 	Mat4f model;
 	this->transformToWorld(&this->position, &model);
 	Mat4f allTransformations(parentTransformations, &model);
 	glUseProgram(this->shader);
-	glBindBuffer(GL_ARRAY_BUFFER, this->positionBuffer);
-	GLuint location = glGetAttribLocation(this->shader, "position");
-	glEnableVertexAttribArray(location);
-	glVertexAttribPointer(location, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-	glBindBuffer(GL_ARRAY_BUFFER, this->colorBuffer);
-	location = glGetAttribLocation(this->shader, "color");
-	glEnableVertexAttribArray(location);
-	glVertexAttribPointer(location, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (const void*)(isSelected ? (4 * sizeof(float)) : 0));	
-	location = glGetUniformLocation(this->shader, "transformations");
-	glUniformMatrix4fv(location, 1, GL_TRUE, allTransformations.getEntries());
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->elementBuffer);
-	glDrawElements(GL_TRIANGLES, Box::NUMBER_OF_INDICES, GL_UNSIGNED_INT, NULL);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glUseProgram(0);
+	SHAPE_UNIFORM_MATRICES(projection, view, allTransformations)
+	SHAPE_ATTRIB_POINTER(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
+	SHAPE_ATTRIB_POINTER(color, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (isSelected ? (4 * sizeof(float)) : 0))
+	SHAPE_ATTRIB_POINTER(normal, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
+	SHAPE_UNIFORM_DEFAULT_LIGHTING(cameraPositionComponents)
+	SHAPE_DRAW_ELEMENTS(Box::NUMBER_OF_INDICES)
 }
 
 bool Box::apply(const int function, const float argument){

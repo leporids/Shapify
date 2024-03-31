@@ -53,15 +53,20 @@ void Cylinder::initializeVertexBuffers(){
 		this->needsPositionBuffer = false;
 	}
 	this->vertices.clear();
+	this->normals.clear();
 	const float bottom = -this->height / 2.0f;
 	const float top = this->height / 2.0f;
 	PUSH_BACK_3F(this->vertices, 0.0f, bottom, 0.0f)
+	PUSH_BACK_3F(this->normals, 0.0f, -1.0f, 0.0f)
 	PUSH_BACK_3F(this->vertices, 0.0f, top, 0.0f)
+	PUSH_BACK_3F(this->normals, 0.0f, 1.0f, 0.0f)
 	for(int i = 0; i < Shape::MAX_POINTS_CIRCLE; ++i){
 		const float rcos = this->radius * cos((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 		const float rsin = this->radius * sin((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 		PUSH_BACK_3F(this->vertices, rcos, bottom, rsin)
+		PUSH_BACK_3F(this->normals, rcos, -this->radius, rsin)
 		PUSH_BACK_3F(this->vertices, rcos, top, rsin)
+		PUSH_BACK_3F(this->normals, rcos, this->radius, rsin)
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, this->positionBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * this->vertices.size(), (void*)this->vertices.data(), GL_STATIC_DRAW);
@@ -69,20 +74,28 @@ void Cylinder::initializeVertexBuffers(){
 	if(this->needsColorBuffer){
 		glGenBuffers(1, &this->colorBuffer);
 		this->colors.clear();
-		PUSH_BACK_4F(this->colors, 0.7f, 0.7f, 0.7f, 1.0f)
-		PUSH_BACK_4F(this->colors, 0.1f, 0.7f, 0.1f, 1.0f)
-		PUSH_BACK_4F(this->colors, 0.7f, 0.7f, 0.7f, 1.0f)
-		PUSH_BACK_4F(this->colors, 0.1f, 0.7f, 0.1f, 1.0f)
+		PUSH_BACK_4F(this->colors, Shape::DEFAULT_COLOR_R, Shape::DEFAULT_COLOR_G, Shape::DEFAULT_COLOR_B, Shape::DEFAULT_COLOR_A)
+		PUSH_BACK_4F(this->colors, Shape::DEFAULT_SELECTED_COLOR_R, Shape::DEFAULT_SELECTED_COLOR_G, Shape::DEFAULT_SELECTED_COLOR_B, Shape::DEFAULT_SELECTED_COLOR_A)
+		PUSH_BACK_4F(this->colors, Shape::DEFAULT_COLOR_R, Shape::DEFAULT_COLOR_G, Shape::DEFAULT_COLOR_B, Shape::DEFAULT_COLOR_A)
+		PUSH_BACK_4F(this->colors, Shape::DEFAULT_SELECTED_COLOR_R, Shape::DEFAULT_SELECTED_COLOR_G, Shape::DEFAULT_SELECTED_COLOR_B, Shape::DEFAULT_SELECTED_COLOR_A)
 		for(int i = 1; i <= Shape::MAX_POINTS_CIRCLE; ++i){
-			const float color = 0.7f * ((float)i / (float)Shape::MAX_POINTS_CIRCLE);
-			PUSH_BACK_4F(this->colors, color, color, color, 1.0f)
-			PUSH_BACK_4F(this->colors, 0.1f, color, 0.1f, 1.0f)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_COLOR_R, Shape::DEFAULT_COLOR_G, Shape::DEFAULT_COLOR_B, Shape::DEFAULT_COLOR_A)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_SELECTED_COLOR_R, Shape::DEFAULT_SELECTED_COLOR_G, Shape::DEFAULT_SELECTED_COLOR_B, Shape::DEFAULT_SELECTED_COLOR_A)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_COLOR_R, Shape::DEFAULT_COLOR_G, Shape::DEFAULT_COLOR_B, Shape::DEFAULT_COLOR_A)
+			PUSH_BACK_4F(this->colors, Shape::DEFAULT_SELECTED_COLOR_R, Shape::DEFAULT_SELECTED_COLOR_G, Shape::DEFAULT_SELECTED_COLOR_B, Shape::DEFAULT_SELECTED_COLOR_A)
 		}
 		glBindBuffer(GL_ARRAY_BUFFER, this->colorBuffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * this->colors.size(), (void*)this->colors.data(), GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		this->needsColorBuffer = false;
 	}
+	if(this->needsNormalBuffer){
+		glGenBuffers(1, &this->normalBuffer);
+		this->needsNormalBuffer = false;
+	}
+	glBindBuffer(GL_ARRAY_BUFFER, this->normalBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * this->normals.size(), (void*)this->normals.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	if(this->needsElementBuffer){
 		glGenBuffers(1, &this->elementBuffer);
 		this->indices.clear();
@@ -103,26 +116,17 @@ void Cylinder::initializeVertexBuffers(){
 	}
 }
 
-void Cylinder::render(const Mat4f* const parentTransformations, const bool isSelected) const{
+void Cylinder::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
 	Mat4f model;
 	this->transformToWorld(&this->position, &model);
 	Mat4f allTransformations(parentTransformations, &model);
 	glUseProgram(this->shader);
-	glBindBuffer(GL_ARRAY_BUFFER, this->positionBuffer);
-	GLuint location = glGetAttribLocation(this->shader, "position");
-	glEnableVertexAttribArray(location);
-	glVertexAttribPointer(location, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-	glBindBuffer(GL_ARRAY_BUFFER, this->colorBuffer);
-	location = glGetAttribLocation(this->shader, "color");
-	glEnableVertexAttribArray(location);
-	glVertexAttribPointer(location, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (const void*)(isSelected ? (4 * sizeof(float)) : 0));	
-	location = glGetUniformLocation(this->shader, "transformations");
-	glUniformMatrix4fv(location, 1, GL_TRUE, allTransformations.getEntries());
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->elementBuffer);
-	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, NULL);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glUseProgram(0);
+	SHAPE_UNIFORM_MATRICES(projection, view, allTransformations)
+	SHAPE_ATTRIB_POINTER(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
+	SHAPE_ATTRIB_POINTER(color, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (isSelected ? (4 * sizeof(float)) : 0))
+	SHAPE_ATTRIB_POINTER(normal, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
+	SHAPE_UNIFORM_DEFAULT_LIGHTING(cameraPositionComponents)
+	SHAPE_DRAW_ELEMENTS(this->indices.size())
 }
 
 bool Cylinder::apply(const int function, const float argument){

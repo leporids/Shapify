@@ -354,16 +354,16 @@ void Workspace::promptFrameFunction(const int type, const std::string& prompt1, 
 }
 
 void Workspace::render() const{
-	Mat4f allTransformations(this->camera->getProjectionMatrix(), this->camera->getViewMatrix());
+	const Mat4f* const projection = this->camera->getProjectionMatrix();
+	const Mat4f* const view = this->camera->getViewMatrix();
+	const float* const cameraPositionComponents = this->camera->getPosition()->getComponents();
+	Mat4f parentTransformations;
+	parentTransformations.identity();
 	for(size_t i = 0; i < this->shapes.size(); ++i){
 		if(!this->shapes[i]->getIsVisible()){
 			continue;
 		}
-		if(this->mode == Workspace::MODE_SHAPES){
-			this->shapes[i]->render(&allTransformations, (i == (size_t)this->shapesIndex));
-		}else{
-			this->shapes[i]->render(&allTransformations, false);
-		}
+		this->shapes[i]->render(projection, view, &parentTransformations, cameraPositionComponents, (this->mode == Workspace::MODE_SHAPES) && (i == (size_t)this->shapesIndex));
 	}
 }
 

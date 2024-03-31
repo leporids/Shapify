@@ -43,12 +43,12 @@ size_t Compound::size() const{
 	return this->children.size();
 }
 
-void Compound::render(const Mat4f* const parentTransformations, const bool isSelected) const{
+void Compound::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
 	Mat4f model;
 	this->transformToWorld(&this->position, &model);
 	Mat4f allTransformations(parentTransformations, &model);
 	for(size_t i = 0; i < this->children.size(); ++i){
-		this->children[i]->render(&allTransformations, isSelected);
+		this->children[i]->render(projection, view, &allTransformations, cameraPositionComponents, isSelected);
 	}
 }
 

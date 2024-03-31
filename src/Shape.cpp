@@ -2,6 +2,18 @@
 #include "Workspace.h"
 #include "Parser.h"
 
+const float Shape::DEFAULT_LIGHT_PARAMETERS[25] = {0.2f, 0.2f, 0.2f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.6f, 0.6f, 0.6f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.9f, 0.9f, 0.9f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 30.0f};
+
+const float Shape::DEFAULT_COLOR_R = 0.4f;
+const float Shape::DEFAULT_COLOR_G = 0.4f;
+const float Shape::DEFAULT_COLOR_B = 0.4f;
+const float Shape::DEFAULT_COLOR_A = 1.0f;
+
+const float Shape::DEFAULT_SELECTED_COLOR_R = 0.1f;
+const float Shape::DEFAULT_SELECTED_COLOR_G = 0.8f;
+const float Shape::DEFAULT_SELECTED_COLOR_B = 0.1f;
+const float Shape::DEFAULT_SELECTED_COLOR_A = 1.0f;
+
 Shape::Shape() :
 	Shape(0.0f, 0.0f, 0.0f)
 {
@@ -146,23 +158,53 @@ void Shape::initializeShader(){
 		int compileStatus = 0;
 		char error[256];
 		const char* vertexShaderSource = "#version 330 core\n"
-			"in vec3 position;\n"
-			"attribute vec4 color;\n"
-			"uniform mat4 transformations;\n"
+			"uniform mat4 projection;\n"
+			"uniform mat4 view;\n"
+			"uniform mat4 model;\n"
 			"\n"
-			"out vec4 vertexColor;\n"
+			"in vec3 position;\n"
+			"in vec4 color;\n"
+			"in vec3 normal;\n"
+			"\n"
+			"out vec3 varyingWorldPosition;\n"
+			"out vec4 varyingColor;\n"
+			"out vec3 varyingNormal;\n"
 			"\n"
 			"void main(){\n"
-				"gl_Position = transformations * vec4(position, 1);\n"
-				"vertexColor = color;\n"
+				"vec4 worldPosition = model * vec4(position, 1);\n"
+				"gl_Position = projection * view * worldPosition;\n"
+				"varyingWorldPosition = vec3(worldPosition);\n"
+				"varyingColor = color;\n"
+				"varyingNormal = vec3(transpose(inverse(model)) * vec4(normal, 0));\n"
 			"}\0";
 		const char* fragmentShaderSource = "#version 330 core\n"
-			"in vec4 vertexColor;\n"
+			"uniform vec4 ambientLightIntensity;\n"
+			"uniform vec4 ambientLightColor;\n"
 			"\n"
-			"out vec4 fragColor;\n"
+			"uniform vec3 lightWorldPosition;\n"
+			"uniform vec4 diffuseLightIntensity;\n"
+			"uniform vec4 diffuseLightColor;\n"
+			"\n"
+			"uniform vec3 cameraWorldPosition;\n"
+			"uniform vec4 specularLightIntensity;\n"
+			"uniform vec4 specularLightColor;\n"
+			"uniform float specularLightPower;\n"
+			"\n"
+			"in vec3 varyingWorldPosition;\n"
+			"in vec4 varyingColor;\n"
+			"in vec3 varyingNormal;\n"
+			"\n"
+			"out vec4 color;\n"
 			"\n"
 			"void main(){\n"
-				"fragColor = vertexColor;\n"
+				"vec4 ambientColor = ambientLightIntensity * ambientLightColor;\n"
+				"vec3 fragmentToLight = normalize(lightWorldPosition - varyingWorldPosition);\n"
+				"vec3 normal = normalize(varyingNormal);\n"
+				"vec4 diffuseColor = max(dot(normal, fragmentToLight), 0.0) * diffuseLightIntensity * diffuseLightColor;\n"
+				"vec3 fragmentToCamera = normalize(cameraWorldPosition - varyingWorldPosition);\n"
+				"vec3 reflection = reflect(-fragmentToLight, normal);\n"
+				"vec4 specularColor = pow(max(dot(reflection, fragmentToCamera), 0.0), specularLightPower) * specularLightIntensity * specularLightColor;\n"
+				"color = (ambientColor + diffuseColor + specularColor) * varyingColor;\n"
 			"}\0";
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);

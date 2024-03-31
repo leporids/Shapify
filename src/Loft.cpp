@@ -46,7 +46,7 @@ size_t Loft::size() const{
 	return this->children.size();
 }
 
-void Loft::render(const Mat4f* const parentTransformations, const bool isSelected) const{
+void Loft::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
 	Mat4f model;
 	this->transformToWorld(&this->position, &model);
 	Mat4f allTransformations(parentTransformations, &model);

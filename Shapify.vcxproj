@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0A8AF97D-6F1A-4915-A810-FBF8E576ECA1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Shapify</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>include;$(GL_Shared_Location)\include;$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
+    <LibraryPath>$(GL_Shared_Location)\lib\$(PlatformName);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(GL_Shared_Location)\include;$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include/Animated.h" />
+    <ClInclude Include="include/Animation.h" />
+    <ClInclude Include="include/Axis2D.h" />
+    <ClInclude Include="include/Box.h" />
+    <ClInclude Include="include/Camera.h" />
+    <ClInclude Include="include/CompilePrinter.h" />
+    <ClInclude Include="include/Compound.h" />
+    <ClInclude Include="include/Cone.h" />
+    <ClInclude Include="include/Cylinder.h" />
+    <ClInclude Include="include/FrameEnd.h" />
+    <ClInclude Include="include/FrameFunction.h" />
+    <ClInclude Include="include/Frame.h" />
+    <ClInclude Include="include/Grid.h" />
+    <ClInclude Include="include/IndentedStream.h" />
+    <ClInclude Include="include/InterpolatedFrameFunction.h" />
+    <ClInclude Include="include/Loft.h" />
+    <ClInclude Include="include/matrices.h" />
+    <ClInclude Include="include/Parser.h" />
+    <ClInclude Include="include/PlanePoints.h" />
+    <ClInclude Include="include/Point.h" />
+    <ClInclude Include="include/Printable.h" />
+    <ClInclude Include="include/Printer.h" />
+    <ClInclude Include="include/Rotate.h" />
+    <ClInclude Include="include/Scale.h" />
+    <ClInclude Include="include/Shape.h" />
+    <ClInclude Include="include/Solver.h" />
+    <ClInclude Include="include/Sphere.h" />
+    <ClInclude Include="include/Transformation.h" />
+    <ClInclude Include="include/Translate.h" />
+    <ClInclude Include="include/units.h" />
+    <ClInclude Include="include/vectors.h" />
+    <ClInclude Include="include/Workspace.h" />
+    <ClInclude Include="include/WorkspacePrinter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src/Animation.cpp" />
+    <ClCompile Include="src/Axis2D.cpp" />
+    <ClCompile Include="src/Box.cpp" />
+    <ClCompile Include="src/Camera.cpp" />
+    <ClCompile Include="src/CompilePrinter.cpp" />
+    <ClCompile Include="src/Compound.cpp" />
+    <ClCompile Include="src/Cone.cpp" />
+    <ClCompile Include="src/Cylinder.cpp" />
+    <ClCompile Include="src/Frame.cpp" />
+    <ClCompile Include="src/FrameEnd.cpp" />
+    <ClCompile Include="src/FrameFunction.cpp" />
+    <ClCompile Include="src/Grid.cpp" />
+    <ClCompile Include="src/IndentedStream.cpp" />
+    <ClCompile Include="src/InterpolatedFrameFunction.cpp" />
+    <ClCompile Include="src/Loft.cpp" />
+    <ClCompile Include="src/main.cpp" />
+    <ClCompile Include="src/matrices.cpp" />
+    <ClCompile Include="src/Parser.cpp" />
+    <ClCompile Include="src/PlanePoints.cpp" />
+    <ClCompile Include="src/Point.cpp" />
+    <ClCompile Include="src/Printer.cpp" />
+    <ClCompile Include="src/Rotate.cpp" />
+    <ClCompile Include="src/Scale.cpp" />
+    <ClCompile Include="src/Shape.cpp" />
+    <ClCompile Include="src/Solver.cpp" />
+    <ClCompile Include="src/Sphere.cpp" />
+    <ClCompile Include="src/Transformation.cpp" />
+    <ClCompile Include="src/Translate.cpp" />
+    <ClCompile Include="src/vectors.cpp" />
+    <ClCompile Include="src/Workspace.cpp" />
+    <ClCompile Include="src/WorkspacePrinter.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

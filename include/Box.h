@@ -19,9 +19,10 @@ class Box : public Shape {
 		virtual void initializeVertexBuffers();
 		static const int NUMBER_OF_VERTICES = 8;
 		static const int NUMBER_OF_TRIANGLES = 12;
+		static const int NUMBER_OF_NORMAL_COMPONENTS = 24;
 		static const int NUMBER_OF_INDICES = 36;
 
-		virtual void render(const Mat4f* const parentTransformations, const bool isSelected) const;
+		virtual void render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const;
 		virtual bool apply(const int function, const float argument);
 		virtual bool apply(const int function, const std::string& listElement);
 
@@ -31,6 +32,7 @@ class Box : public Shape {
 		virtual ~Box();
 	private:
 		Vec3f size;
+		static const float normals[Box::NUMBER_OF_NORMAL_COMPONENTS];
 		static const int indices[Box::NUMBER_OF_INDICES];
 		friend class Animation;
 };

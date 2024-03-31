@@ -17,7 +17,7 @@ class Sphere : public Shape {
 		virtual void setIdentifier(const int sequenceNumber);
 		virtual void initializeVertexBuffers();
 
-		virtual void render(const Mat4f* const parentTransformations, const bool isSelected) const;
+		virtual void render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const;
 		virtual bool apply(const int function, const float argument);
 		virtual bool apply(const int function, const std::string& listElement);
 

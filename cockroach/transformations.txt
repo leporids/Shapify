@@ -74,20 +74,32 @@ Rotate: leftProthoracicTarsusModelRotate
 Rotate: leftProthoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: leftProthoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: leftProthoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 1289.15
+	y: 636.185
+	z: -393.321
+
+Rotate: leftProthoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 1289.15
+	y: 636.185
+	z: -393.321
 
 Rotate: leftProthoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -989.178
+	y: -673.403
+	z: -159.558
 
 Rotate: rightProthoracicFemurModelRotate
 	angle: 68.1135
@@ -110,20 +122,32 @@ Rotate: rightProthoracicTarsusModelRotate
 Rotate: rightProthoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: rightProthoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: rightProthoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 1293.13
+	y: -640.813
+	z: 393.321
+
+Rotate: rightProthoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 1293.13
+	y: -640.813
+	z: 393.321
 
 Rotate: rightProthoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -995.373
+	y: 676.335
+	z: 159.58
 
 Rotate: leftMesothoracicFemurModelRotate
 	angle: 73.2597
@@ -146,20 +170,32 @@ Rotate: leftMesothoracicTarsusModelRotate
 Rotate: leftMesothoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: leftMesothoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: leftMesothoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 3066.79
+	y: 5177.55
+	z: -1352.14
+
+Rotate: leftMesothoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 3066.79
+	y: 5177.55
+	z: -1352.14
 
 Rotate: leftMesothoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -1431.36
+	y: -2577.58
+	z: 757.715
 
 Rotate: rightMesothoracicFemurModelRotate
 	angle: 73.2597
@@ -182,20 +218,32 @@ Rotate: rightMesothoracicTarsusModelRotate
 Rotate: rightMesothoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: rightMesothoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: rightMesothoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 3066.79
+	y: -5177.55
+	z: 1352.14
+
+Rotate: rightMesothoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 3066.79
+	y: -5177.55
+	z: 1352.14
 
 Rotate: rightMesothoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -1431.36
+	y: 2577.58
+	z: -757.715
 
 Rotate: leftMetathoracicFemurModelRotate
 	angle: 72.7098
@@ -218,20 +266,32 @@ Rotate: leftMetathoracicTarsusModelRotate
 Rotate: leftMetathoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: leftMetathoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: leftMetathoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 2217.07
+	y: 7255.12
+	z: -436.03
+
+Rotate: leftMetathoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 2217.07
+	y: 7255.12
+	z: -436.03
 
 Rotate: leftMetathoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -2226.34
+	y: -5510.27
+	z: 222.651
 
 Rotate: rightMetathoracicFemurModelRotate
 	angle: 72.7098
@@ -254,18 +314,30 @@ Rotate: rightMetathoracicTarsusModelRotate
 Rotate: rightMetathoracicFemurWorldRotate
 	angle: 0
 	x: 0
-	y: 0
+	y: 1
+	z: 0
+
+Rotate: rightMetathoracicFemurWorldNegativeRotate
+	angle: 0
+	x: 0
+	y: 1
 	z: 0
 
 Rotate: rightMetathoracicTibiaWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: 2217.07
+	y: -7255.12
+	z: 436.03
+
+Rotate: rightMetathoracicTibiaWorldNegativeRotate
+	angle: 0
+	x: 2217.07
+	y: -7255.12
+	z: 436.03
 
 Rotate: rightMetathoracicTarsusWorldRotate
 	angle: 0
-	x: 0
-	y: 0
-	z: 0
+	x: -2226.34
+	y: 5510.27
+	z: -222.651
 

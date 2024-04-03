@@ -1,1 +1,186 @@
+Frame: 0
+	time: 0
+	setTo: leftProthoracicFemurWorldRotate.angle,0
+	setTo: leftProthoracicFemurWorldNegativeRotate.angle,0
+	setTo: leftProthoracicTibiaWorldRotate.angle,0
+	setTo: leftProthoracicTibiaWorldNegativeRotate.angle,0
+	setTo: leftProthoracicTarsusWorldRotate.angle,0
+	setTo: leftMesothoracicFemurWorldRotate.angle,0
+	setTo: leftMesothoracicFemurWorldNegativeRotate.angle,0
+	setTo: leftMesothoracicTibiaWorldRotate.angle,0
+	setTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	setTo: leftMesothoracicTarsusWorldRotate.angle,0
+	setTo: leftMetathoracicFemurWorldRotate.angle,0
+	setTo: leftMetathoracicFemurWorldNegativeRotate.angle,0
+	setTo: leftMetathoracicTibiaWorldRotate.angle,0
+	setTo: leftMetathoracicTibiaWorldNegativeRotate.angle,0
+	setTo: leftMetathoracicTarsusWorldRotate.angle,0
+	setTo: rightProthoracicFemurWorldRotate.angle,0
+	setTo: rightProthoracicFemurWorldNegativeRotate.angle,0
+	setTo: rightProthoracicTibiaWorldRotate.angle,0
+	setTo: rightProthoracicTibiaWorldNegativeRotate.angle,0
+	setTo: rightProthoracicTarsusWorldRotate.angle,0
+	setTo: rightMesothoracicFemurWorldRotate.angle,0
+	setTo: rightMesothoracicFemurWorldNegativeRotate.angle,0
+	setTo: rightMesothoracicTibiaWorldRotate.angle,0
+	setTo: rightMesothoracicTibiaWorldNegativeRotate.angle,0
+	setTo: rightMesothoracicTarsusWorldRotate.angle,0
+	setTo: rightMetathoracicFemurWorldRotate.angle,0
+	setTo: rightMetathoracicFemurWorldNegativeRotate.angle,0
+	setTo: rightMetathoracicTibiaWorldRotate.angle,0
+	setTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	setTo: rightMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 1
+	time: 10
+	setTo: leftProthoracicFemurWorldRotate.angle,0
+	setTo: leftProthoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftProthoracicTibiaWorldRotate.angle,45
+	linearTo: leftProthoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: leftProthoracicTarsusWorldRotate.angle,30
+	setTo: rightMesothoracicFemurWorldRotate.angle,0
+	setTo: rightMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMesothoracicTibiaWorldRotate.angle,45
+	linearTo: rightMesothoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: rightMesothoracicTarsusWorldRotate.angle,30
+	setTo: leftMetathoracicFemurWorldRotate.angle,0
+	setTo: leftMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMetathoracicTibiaWorldRotate.angle,45
+	linearTo: leftMetathoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: leftMetathoracicTarsusWorldRotate.angle,30
+
+Frame: 2
+	time: 20
+	linearTo: leftProthoracicFemurWorldRotate.angle,-35
+	linearTo: leftProthoracicFemurWorldNegativeRotate.angle,35
+	linearTo: leftProthoracicTibiaWorldRotate.angle,45
+	linearTo: leftProthoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: leftProthoracicTarsusWorldRotate.angle,30
+	linearTo: rightMesothoracicFemurWorldRotate.angle,-50
+	linearTo: rightMesothoracicFemurWorldNegativeRotate.angle,50
+	linearTo: rightMesothoracicTibiaWorldRotate.angle,45
+	linearTo: rightMesothoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: rightMesothoracicTarsusWorldRotate.angle,30
+	linearTo: leftMetathoracicFemurWorldRotate.angle,-60
+	linearTo: leftMetathoracicFemurWorldNegativeRotate.angle,60
+	linearTo: leftMetathoracicTibiaWorldRotate.angle,45
+	linearTo: leftMetathoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: leftMetathoracicTarsusWorldRotate.angle,30
+
+Frame: 3
+	time: 30
+	linearTo: leftProthoracicFemurWorldRotate.angle,-35
+	linearTo: leftProthoracicFemurWorldNegativeRotate.angle,35
+	linearTo: leftProthoracicTibiaWorldRotate.angle,0
+	linearTo: leftProthoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftProthoracicTarsusWorldRotate.angle,0
+	linearTo: rightMesothoracicFemurWorldRotate.angle,-50
+	linearTo: rightMesothoracicFemurWorldNegativeRotate.angle,50
+	linearTo: rightMesothoracicTibiaWorldRotate.angle,0
+	linearTo: rightMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMesothoracicTarsusWorldRotate.angle,0
+	linearTo: leftMetathoracicFemurWorldRotate.angle,-60
+	linearTo: leftMetathoracicFemurWorldNegativeRotate.angle,60
+	linearTo: leftMetathoracicTibiaWorldRotate.angle,0
+	linearTo: leftMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 4
+	time: 40
+	linearTo: leftProthoracicFemurWorldRotate.angle,0
+	linearTo: leftProthoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftProthoracicTibiaWorldRotate.angle,0
+	linearTo: leftProthoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftProthoracicTarsusWorldRotate.angle,0
+	linearTo: rightMesothoracicFemurWorldRotate.angle,0
+	linearTo: rightMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMesothoracicTibiaWorldRotate.angle,0
+	linearTo: rightMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMesothoracicTarsusWorldRotate.angle,0
+	linearTo: leftMetathoracicFemurWorldRotate.angle,0
+	linearTo: leftMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMetathoracicTibiaWorldRotate.angle,0
+	linearTo: leftMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMetathoracicTarsusWorldRotate.angle,0
+	setTo: rightProthoracicTibiaWorldRotate.angle,0
+	setTo: rightProthoracicTibiaWorldNegativeRotate.angle,0
+	setTo: rightProthoracicTarsusWorldRotate.angle,0
+	setTo: leftMesothoracicTibiaWorldRotate.angle,0
+	setTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	setTo: leftMesothoracicTarsusWorldRotate.angle,0
+	setTo: rightMetathoracicTibiaWorldRotate.angle,0
+	setTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	setTo: rightMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 5
+	time: 50
+	setTo: rightProthoracicFemurWorldRotate.angle,0
+	setTo: rightProthoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightProthoracicTibiaWorldRotate.angle,45
+	linearTo: rightProthoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: rightProthoracicTarsusWorldRotate.angle,30
+	setTo: leftMesothoracicFemurWorldRotate.angle,0
+	setTo: leftMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTarsusWorldRotate.angle,0
+	setTo: rightMetathoracicFemurWorldRotate.angle,0
+	setTo: rightMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 6
+	time: 60
+	linearTo: rightProthoracicFemurWorldRotate.angle,35
+	linearTo: rightProthoracicFemurWorldNegativeRotate.angle,-35
+	linearTo: rightProthoracicTibiaWorldRotate.angle,45
+	linearTo: rightProthoracicTibiaWorldNegativeRotate.angle,-45
+	linearTo: rightProthoracicTarsusWorldRotate.angle,30
+	linearTo: leftMesothoracicFemurWorldRotate.angle,0
+	linearTo: leftMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTarsusWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 7
+	time: 70
+	linearTo: rightProthoracicFemurWorldRotate.angle,35
+	linearTo: rightProthoracicFemurWorldNegativeRotate.angle,-35
+	linearTo: rightProthoracicTibiaWorldRotate.angle,0
+	linearTo: rightProthoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightProthoracicTarsusWorldRotate.angle,0
+	linearTo: leftMesothoracicFemurWorldRotate.angle,0
+	linearTo: leftMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTarsusWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTarsusWorldRotate.angle,0
+
+Frame: 8
+	time: 80
+	linearTo: rightProthoracicFemurWorldRotate.angle,0
+	linearTo: rightProthoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightProthoracicTibiaWorldRotate.angle,0
+	linearTo: rightProthoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightProthoracicTarsusWorldRotate.angle,0
+	linearTo: leftMesothoracicFemurWorldRotate.angle,0
+	linearTo: leftMesothoracicFemurWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldRotate.angle,0
+	linearTo: leftMesothoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: leftMesothoracicTarsusWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldRotate.angle,0
+	linearTo: rightMetathoracicFemurWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldRotate.angle,0
+	linearTo: rightMetathoracicTibiaWorldNegativeRotate.angle,0
+	linearTo: rightMetathoracicTarsusWorldRotate.angle,0
 

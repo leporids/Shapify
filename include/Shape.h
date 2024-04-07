@@ -8,6 +8,9 @@ class Printer;
 #include "Animated.h"
 #include "Animation.h"
 #include <vector>
+#define PUSH_BACK_2F(name, a, b) \
+	name.push_back(a); \
+	name.push_back(b);
 #define PUSH_BACK_3F(name, a, b, c) \
 	name.push_back(a); \
 	name.push_back(b); \
@@ -29,22 +32,22 @@ class Printer;
 	location = glGetAttribLocation(this->shader, #attribute); \
 	glEnableVertexAttribArray(location); \
 	glVertexAttribPointer(location, size, type, normalized, stride, (const void*)pointer);
-#define SHAPE_UNIFORM_VALUE(glUniform, name, value) \
+#define SHAPE_UNIFORM_VALUE(type, name, value) \
 	location = glGetUniformLocation(this->shader, #name); \
-	glUniform(location, value);
-#define SHAPE_UNIFORM_VECTOR(glUniform, name, value) \
+	glUniform##type(location, value);
+#define SHAPE_UNIFORM_VECTOR(type, name, value) \
 	location = glGetUniformLocation(this->shader, #name); \
-	glUniform(location, 1, value);
+	glUniform##type##v(location, 1, value);
 #define SHAPE_UNIFORM_DEFAULT_LIGHTING(cameraPositionComponents) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, ambientLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 0) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, ambientLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 4) \
-	SHAPE_UNIFORM_VECTOR(glUniform3fv, lightWorldPosition, cameraPositionComponents) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, diffuseLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 8) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, diffuseLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 12) \
-	SHAPE_UNIFORM_VECTOR(glUniform3fv, cameraWorldPosition, cameraPositionComponents) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, specularLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 16) \
-	SHAPE_UNIFORM_VECTOR(glUniform4fv, specularLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 20) \
-	SHAPE_UNIFORM_VALUE(glUniform1f, specularLightPower, Shape::DEFAULT_LIGHT_PARAMETERS[24])
+	SHAPE_UNIFORM_VECTOR(4f, ambientLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 0) \
+	SHAPE_UNIFORM_VECTOR(4f, ambientLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 4) \
+	SHAPE_UNIFORM_VECTOR(3f, lightWorldPosition, cameraPositionComponents) \
+	SHAPE_UNIFORM_VECTOR(4f, diffuseLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 8) \
+	SHAPE_UNIFORM_VECTOR(4f, diffuseLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 12) \
+	SHAPE_UNIFORM_VECTOR(3f, cameraWorldPosition, cameraPositionComponents) \
+	SHAPE_UNIFORM_VECTOR(4f, specularLightIntensity, Shape::DEFAULT_LIGHT_PARAMETERS + 16) \
+	SHAPE_UNIFORM_VECTOR(4f, specularLightColor, Shape::DEFAULT_LIGHT_PARAMETERS + 20) \
+	SHAPE_UNIFORM_VALUE(1f, specularLightPower, Shape::DEFAULT_LIGHT_PARAMETERS[24])
 #define SHAPE_DRAW_ELEMENTS(count) \
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->elementBuffer); \
 	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, NULL); \
@@ -74,7 +77,7 @@ class Shape {
 
 		virtual void initializeShader();
 		virtual void initializeVertexBuffers();
-		virtual void render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const = 0;
+		virtual void render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const;
 		virtual bool apply(const int function, const float argument);
 		virtual bool apply(const int function, const std::string& listElement) = 0;
 

@@ -54,6 +54,8 @@ class Animation {
 
 		void reset();
 		bool build();
+		bool getIsInitialized() const;
+		void deleteAllFrames();
 
 		bool tick(const float time);
 
@@ -65,6 +67,7 @@ class Animation {
 
 		~Animation();
 	private:
+		bool isInitialized;
 		std::vector<Frame*> frames;
 		int frameIndex;
 		Frame* current;

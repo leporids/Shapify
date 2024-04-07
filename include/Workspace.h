@@ -10,9 +10,13 @@
 #include <vector>
 #include <unordered_map>
 #include <fstream>
+class Parser;
 class Workspace {
 	public:
 		Workspace();
+
+		void changeDirectory(const char* const directory);
+		void promptForDirectory();
 
 		int getMode() const;
 		void setMode(const int mode);
@@ -77,6 +81,8 @@ class Workspace {
 		void print() const;
 		void printSelected() const;
 
+		void reset();
+
 		~Workspace();
 	private:
 		template <typename T, typename U> void findObject(const std::string& identifier, U* const byIdentifier, T** const output) const;
@@ -85,6 +91,7 @@ class Workspace {
 		void selectNext(int* const index, const size_t size);
 
 		friend class Parser;
+		Parser* const parser;
 		std::string directory;
 		std::vector<Point*> points;
 		std::vector<Shape*> shapes;

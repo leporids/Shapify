@@ -111,6 +111,7 @@
     <ClInclude Include="include/Shape.h" />
     <ClInclude Include="include/Solver.h" />
     <ClInclude Include="include/Sphere.h" />
+    <ClInclude Include="include/Texture.h" />
     <ClInclude Include="include/Transformation.h" />
     <ClInclude Include="include/Translate.h" />
     <ClInclude Include="include/units.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="src/Shape.cpp" />
     <ClCompile Include="src/Solver.cpp" />
     <ClCompile Include="src/Sphere.cpp" />
+    <ClCompile Include="src/Texture.cpp" />
     <ClCompile Include="src/Transformation.cpp" />
     <ClCompile Include="src/Translate.cpp" />
     <ClCompile Include="src/vectors.cpp" />

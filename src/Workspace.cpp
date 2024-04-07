@@ -3,6 +3,7 @@
 #include "CompilePrinter.h"
 
 Workspace::Workspace() :
+	parser(new Parser(this)),
 	directory(""),
 	points(std::vector<Point*>()),
 	shapes(std::vector<Shape*>()),
@@ -24,6 +25,24 @@ Workspace::Workspace() :
 	isPlayingAnimation(false),
 	animationTime(0.0f)
 {}
+
+void Workspace::changeDirectory(const char* const directory){
+	this->reset();
+	if(this->parser->parseDirectory(directory)){
+		printf("\nParser has parsed directory \"%s\".\nAllocated %lu points, %lu shapes, and %lu transformations.\n", directory, this->points.size(), this->shapes.size(), this->transformations.size());
+	}else{
+		this->directory = "";
+		this->reset();
+		puts("\nParser has encountered an error.");
+	}
+}
+
+void Workspace::promptForDirectory(){
+	std::string directory;
+	std::cout << "Please enter the path to the workspace directory: ";
+	std::cin >> directory;
+	this->changeDirectory(directory.c_str());
+}
 
 int Workspace::getMode() const{
 	return this->mode;
@@ -376,7 +395,9 @@ void Workspace::buildAnimation(){
 }
 
 void Workspace::playAnimation(){
-	this->isPlayingAnimation = true;
+	if(this->animation.getIsInitialized()){
+		this->isPlayingAnimation = true;
+	}
 }
 
 void Workspace::pauseAnimation(){
@@ -400,46 +421,52 @@ void Workspace::tickAnimation(){
 }
 
 void Workspace::compile() const{
-	std::string filename(this->directory);
-	filename += "/output/compiled.cpp";
-	std::ofstream file(filename.c_str(), std::ofstream::out);
-	CompilePrinter printer(new IndentedStream(file));
-	this->printAllOf(&this->points, &printer);
-	this->printAllOf(&this->transformations, &printer);
-	this->printAllOf(&this->shapes, &printer);
-	this->animation.print(&printer);
-	delete printer.getStream();
-	file.close();
+	if(this->directory.size() > 0){
+		std::string filename(this->directory);
+		filename += "/output/compiled.cpp";
+		std::ofstream file(filename.c_str(), std::ofstream::out);
+		CompilePrinter printer(new IndentedStream(file));
+		this->printAllOf(&this->points, &printer);
+		this->printAllOf(&this->transformations, &printer);
+		this->printAllOf(&this->shapes, &printer);
+		this->animation.print(&printer);
+		delete printer.getStream();
+		file.close();
+	}
 }
 
 void Workspace::backup() const{
-	std::string points(this->directory);
-	std::string shapes(this->directory);
-	std::string transformations(this->directory);
-	std::string animations(this->directory);
-	points += "/backup/points.txt";
-	shapes += "/backup/shapes.txt";
-	transformations += "/backup/transformations.txt";
-	animations += "/backup/animations.txt";
-	this->saveToFile(points, &this->points);
-	this->saveToFile(shapes, &this->shapes);
-	this->saveToFile(transformations, &this->transformations);
-	this->saveToFile(animations, &this->animation);
+	if(this->directory.size() > 0){
+		std::string points(this->directory);
+		std::string shapes(this->directory);
+		std::string transformations(this->directory);
+		std::string animations(this->directory);
+		points += "/backup/points.txt";
+		shapes += "/backup/shapes.txt";
+		transformations += "/backup/transformations.txt";
+		animations += "/backup/animations.txt";
+		this->saveToFile(points, &this->points);
+		this->saveToFile(shapes, &this->shapes);
+		this->saveToFile(transformations, &this->transformations);
+		this->saveToFile(animations, &this->animation);
+	}
 }
 
 void Workspace::save() const{
-	std::string points(this->directory);
-	std::string shapes(this->directory);
-	std::string transformations(this->directory);
-	std::string animations(this->directory);
-	points += "/points.txt";
-	shapes += "/shapes.txt";
-	transformations += "/transformations.txt";
-	animations += "/animations.txt";
-	this->saveToFile(points, &this->points);
-	this->saveToFile(shapes, &this->shapes);
-	this->saveToFile(transformations, &this->transformations);
-	this->saveToFile(animations, &this->animation);
+	if(this->directory.size() > 0){
+		std::string points(this->directory);
+		std::string shapes(this->directory);
+		std::string transformations(this->directory);
+		std::string animations(this->directory);
+		points += "/points.txt";
+		shapes += "/shapes.txt";
+		transformations += "/transformations.txt";
+		animations += "/animations.txt";
+		this->saveToFile(points, &this->points);
+		this->saveToFile(shapes, &this->shapes);
+		this->saveToFile(transformations, &this->transformations);
+		this->saveToFile(animations, &this->animation);
+	}
 }
 
 void Workspace::saveToFile(const std::string& filename, const Animation* const animation) const{
@@ -505,6 +532,29 @@ void Workspace::printSelected() const{
 
 #define DELETE_ALL(X) for(i = 0; i < this->X.size(); ++i){delete this->X[i];}
 
+void Workspace::reset(){
+	size_t i;
+	DELETE_ALL(shapes)
+	DELETE_ALL(transformations)
+	DELETE_ALL(points)
+	this->points.clear();
+	this->shapes.clear();
+	this->transformations.clear();
+	this->pointsByIdentifier.clear();
+	this->shapesByIdentifier.clear();
+	this->transformationsByIdentifier.clear();
+	this->mode = 0;
+	this->pointsIndex = 0;
+	this->shapesIndex = 0;
+	this->transformationsIndex = 0;
+	this->pointSequenceNumber = 0;
+	this->shapeSequenceNumber = 0;
+	this->transformationSequenceNumber = 0;
+	this->isPlayingAnimation = false;
+	this->animationTime = 0.0f;
+	this->animation.deleteAllFrames();
+}
+
 Workspace::~Workspace(){
 	size_t i;
 	DELETE_ALL(shapes)
@@ -515,5 +565,6 @@ Workspace::~Workspace(){
 		delete this->printers[i];
 	}
 	delete this->camera;
+	delete this->parser;
 	puts("\nCleanup complete.");
 }

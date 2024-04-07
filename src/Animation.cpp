@@ -14,6 +14,7 @@
 #include "Scale.h"
 
 Animation::Animation() :
+	isInitialized(false),
 	frames(),
 	frameIndex(0),
 	current(0),
@@ -147,7 +148,7 @@ bool Animation::addFrameFunction(const int type, Scale* const scale, const int s
 }
 
 void Animation::reset(){
-	if(this->frames.size() > 1){
+	if(this->isInitialized){
 		this->current = this->frames[0];
 		this->next = this->frames[1];
 		this->frameIndex = 2 % this->frames.size();
@@ -172,9 +173,26 @@ bool Animation::build(){
 			this->frames[i]->buildInterpolationFunctions(this->frames[(size_t)previousIndex]);
 			this->frames[i]->buildFinalFunctions(this->frames[(size_t)nextIndex]);
 		}
+	}else{
+		return false;
 	}
+	this->isInitialized = true;
 	this->reset();
 	return true;
+}
+
+bool Animation::getIsInitialized() const{
+	return this->isInitialized;
+}
+
+void Animation::deleteAllFrames(){
+	this->isInitialized = false;
+	this->current = NULL;
+	this->next = NULL;
+	for(size_t i = 0; i < this->frames.size(); ++i){
+		delete this->frames[i];
+	}
+	this->frames.clear();
 }
 
 bool Animation::tick(const float time){

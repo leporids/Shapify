@@ -8,7 +8,6 @@
 
 Grid grid(FROM_MM(1), FROM_MM(100));
 Workspace workspace;
-Parser parser(&workspace);
 Axis2D axis;
 
 void displayFunc();
@@ -92,6 +91,8 @@ namespace MENU {
 
 		NEW_POINT,
 		NEW_PLANE,
+		RESET_WORKSPACE,
+		LOAD_NEW_WORKSPACE_DIRECTORY,
 		COMPILE,
 		BACKUP,
 		SAVE,
@@ -102,11 +103,6 @@ namespace MENU {
 void createMenu();
 
 int main(int argc, char* argv[]){
-	if(argc < 2){
-		puts("Please enter the workspace directory as a command line argument.");
-		return 1;
-	}
-	const char* const directory = argv[1];
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(Camera::DEFAULT_WINDOW_WIDTH, Camera::DEFAULT_WINDOW_HEIGHT);
@@ -123,24 +119,22 @@ int main(int argc, char* argv[]){
 		printf("Error: %s\n", glewGetErrorString(glewError));
 		return 1;
 	}
-	if(parser.parseDirectory(directory)){
-		printf("\nParser has parsed directory \"%s\".\nAllocated %lu points, %lu shapes, and %lu transformations.\n", directory, workspace.getPoints()->size(), workspace.getShapes()->size(), workspace.getTransformations()->size());
-		glutMainLoop();
+	grid.initializeShaders();
+	grid.initializeVertexBuffers();
+	if(argc < 2){
+		workspace.promptForDirectory();
 	}else{
-		puts("\nParser has encountered an error.");
+		workspace.changeDirectory(argv[1]);
 	}
+	glutMainLoop();
 	return 0;
 }
 
 void displayFunc(){
 	glClearColor(0.2f, 0.1f, 0.4f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(workspace.getCamera()->getFovAngle(), workspace.getCamera()->getRatio(), workspace.getCamera()->getZNear(), workspace.getCamera()->getZFar());
 	glDisable(GL_DEPTH_TEST);
-	workspace.getCamera()->loadMatrix();
-	grid.render();
+	grid.render(workspace.getCamera());
 	glEnable(GL_DEPTH_TEST);
 	workspace.render();
 	axis.render(workspace.getCamera()->getWindowWidth(), workspace.getCamera()->getWindowHeight());
@@ -513,6 +507,12 @@ void menuFunc(int option){
 	case MENU::NEW_PLANE:
 		workspace.newPoint((Point*)(new PlanePoints()));
 		break;
+	case MENU::RESET_WORKSPACE:
+		workspace.reset();
+		break;
+	case MENU::LOAD_NEW_WORKSPACE_DIRECTORY:
+		workspace.promptForDirectory();
+		break;
 	case MENU::COMPILE:
 		workspace.compile();
 		break;
@@ -614,6 +614,8 @@ void createMenu(){
 	glutAddSubMenu("Solver", subMenuSolver);
 	glutAddSubMenu("Camera", subMenuCamera);
 	glutAddSubMenu("Animation", subMenuAnimation);
+	glutAddMenuEntry("Reset Workspace", MENU::RESET_WORKSPACE);
+	glutAddMenuEntry("Change or Reload Workspace Directory", MENU::LOAD_NEW_WORKSPACE_DIRECTORY);
 	glutAddMenuEntry("Compile", MENU::COMPILE);
 	glutAddMenuEntry("Backup", MENU::BACKUP);
 	glutAddMenuEntry("Save", MENU::SAVE);

@@ -116,19 +116,6 @@ void Cylinder::initializeVertexBuffers(){
 	}
 }
 
-void Cylinder::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
-	Mat4f model;
-	this->transformToWorld(&this->position, &model);
-	Mat4f allTransformations(parentTransformations, &model);
-	glUseProgram(this->shader);
-	SHAPE_UNIFORM_MATRICES(projection, view, allTransformations)
-	SHAPE_ATTRIB_POINTER(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
-	SHAPE_ATTRIB_POINTER(color, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (isSelected ? (4 * sizeof(float)) : 0))
-	SHAPE_ATTRIB_POINTER(normal, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
-	SHAPE_UNIFORM_DEFAULT_LIGHTING(cameraPositionComponents)
-	SHAPE_DRAW_ELEMENTS(this->indices.size())
-}
-
 bool Cylinder::apply(const int function, const float argument){
 	switch(function){
 	case Parser::FUNCTION_NAME_HEIGHT:

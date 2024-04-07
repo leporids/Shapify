@@ -60,8 +60,8 @@ void Cone::initializeVertexBuffers(){
 	for(int i = 1; i <= Shape::MAX_POINTS_CIRCLE; ++i){
 		const float rcos = this->radius * cos((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 		const float rsin = this->radius * sin((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
-		const float hcos = this->radius * cos((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
-		const float hsin = this->radius * sin((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
+		const float hcos = this->height * cos((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
+		const float hsin = this->height * sin((float)i * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 		PUSH_BACK_3F(this->vertices, rcos, bottom, rsin)
 		PUSH_BACK_3F(this->normals, hcos, this->radius, hsin)
 	}
@@ -71,8 +71,8 @@ void Cone::initializeVertexBuffers(){
 		for(int j = 1; j <= Shape::MAX_POINTS_CIRCLE; ++j){
 			const float rcos = layerRadius * cos((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 			const float rsin = layerRadius * sin((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
-			const float hcos = layerRadius * cos((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
-			const float hsin = layerRadius * sin((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
+			const float hcos = this->height * cos((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
+			const float hsin = this->height * sin((float)j * DEGREES_TO_RADIANS(360.0f / (float)Shape::MAX_POINTS_CIRCLE));
 			PUSH_BACK_3F(this->vertices, rcos, layerHeight, rsin)
 			PUSH_BACK_3F(this->normals, hcos, this->radius, hsin)
 		}
@@ -127,19 +127,6 @@ void Cone::initializeVertexBuffers(){
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		this->needsElementBuffer = false;
 	}
-}
-
-void Cone::render(const Mat4f* const projection, const Mat4f* const view, const Mat4f* const parentTransformations, const float* const cameraPositionComponents, const bool isSelected) const{
-	Mat4f model;
-	this->transformToWorld(&this->position, &model);
-	Mat4f allTransformations(parentTransformations, &model);
-	glUseProgram(this->shader);
-	SHAPE_UNIFORM_MATRICES(projection, view, allTransformations)
-	SHAPE_ATTRIB_POINTER(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
-	SHAPE_ATTRIB_POINTER(color, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (isSelected ? (4 * sizeof(float)) : 0))
-	SHAPE_ATTRIB_POINTER(normal, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0)
-	SHAPE_UNIFORM_DEFAULT_LIGHTING(cameraPositionComponents)
-	SHAPE_DRAW_ELEMENTS(this->indices.size())
 }
 
 bool Cone::apply(const int function, const float argument){
